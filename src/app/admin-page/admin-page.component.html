@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<div class="table-container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="(orders$ | async) as orders">
+            <tr *ngFor="let order of orders">
+              <th scope="row">{{ order.id }}</th>
+              <td>{{ order.orderName }}</td>
+              <td> {{ order.status }} </td>
+              <td class="actions">
+                  <button class="btn btn-outline-danger action-button" (click)="rejectOrder(order)"><i class="fas fa-ban"></i></button>
+                  <button class="btn btn-outline-success action-button" (click)="approveOrder(order)"><i class="fas fa-check"></i></button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+</div>

@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<ng-container *ngIf="loading; else loaded">
+  <div class="loading">
+    <i style="font-size: 10rem; margin: auto;" class="fas fa-spinner fa-spin"></i>
+  </div>
+</ng-container>
+
+<ng-template #loaded>
+  <div class="table-container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Order</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="add"> Actions <button class="btn" (click)="openModal()"><i class="fas fa-plus"></i></button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="(orders$ | async) as orders">
+            <tr *ngFor="let order of orders">
+              <th scope="row">{{ order.id }}</th>
+              <td>{{ order.orderName }}</td>
+              <td>{{ order.status }}</td>
+              <td> 
+                  <button class="btn" (click)="openModal(order)"><i class="fas fa-edit"></i></button> 
+                  <button class="btn" (click)="deleteOrder(order)"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+  </div>
+</ng-template>

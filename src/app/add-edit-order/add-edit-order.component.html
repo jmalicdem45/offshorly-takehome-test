@@ -1,0 +1,16 @@
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ order ? 'Edit Order' : 'Create Order' }}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="close()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container login-container">
+        <div class="login-form">
+            <div class="form-group my-3">
+                <input type="text" class="form-control" [(ngModel)]="orderName" placeholder="Enter Order">
+            </div>
+            <button type="button" style="width: 100%" (click)="createOrUpdateOrder()" [disabled]="!orderName" class="btn btn-primary btn-sm btn-block">{{ order ? 'Save' : 'Create' }}</button>
+        </div>
+    </div>
+  </div>
